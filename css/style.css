@@ -609,38 +609,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* =========================================================
-   PROCESS
-   ========================================================= */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; position: relative; counter-reset: step; }
-.steps::before {
-  content: "";
-  position: absolute;
-  top: 34px; right: 12%; left: 12%;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 18px);
-  opacity: .5;
-}
-.step { position: relative; text-align: center; padding: 0 10px; }
-.step__num {
-  position: relative;
-  z-index: 1;
-  width: 70px; height: 70px;
-  margin: 0 auto 24px;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--gold-light);
-  background: var(--ink);
-  box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(119, 131, 143, .35);
-  transition: transform .4s var(--ease);
-}
-.step:hover .step__num { transform: scale(1.08) rotate(-6deg); }
-.step h3 { font-size: 19px; margin-bottom: 8px; }
-.step p { font-size: 15px; }
-
-/* =========================================================
    STATS
    ========================================================= */
 .stats {
@@ -1127,62 +1095,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .partner-modal__content { grid-template-columns: 1fr; }
   .partner-modal__img-wrap { padding: 20px; }
   .partners__metrics { grid-template-columns: 1fr; padding: 24px 0 0; }
-}
-
-/* =========================================================
-   TESTIMONIALS
-   ========================================================= */
-.testimonials { background: var(--bg-2); overflow: hidden; }
-.slider-nav { display: flex; gap: 10px; }
-.slider-btn {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  background: transparent;
-  color: var(--white);
-  display: grid; place-items: center;
-  cursor: pointer;
-  transition: background .3s, color .3s, border-color .3s;
-}
-.slider-btn[data-dir="prev"] .i { transform: scaleX(-1); }
-.slider-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--bg); }
-.tcards {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 44px) / 3);
-  gap: 22px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  padding-bottom: 6px;
-}
-.tcards::-webkit-scrollbar { display: none; }
-.tcard {
-  margin: 0;
-  scroll-snap-align: start;
-  position: relative;
-  padding: 34px 30px 28px;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  transition: border-color .35s;
-}
-.tcard:hover { border-color: rgba(119, 131, 143, .4); }
-.tcard blockquote { margin: 0 0 28px; flex: 1; font-size: 16.5px; line-height: 1.95; color: var(--text); }
-.tcard figcaption { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid var(--line); line-height: 1.4; }
-.tcard figcaption b { display: block; color: var(--white); font-family: var(--font-display); font-size: 15px; }
-.tcard figcaption small { color: var(--muted); font-size: 13px; }
-.avatar {
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  background: var(--gold-grad);
-  color: #050505;
-  font-family: var(--font-display);
-  font-weight: 600;
 }
 
 /* =========================================================
@@ -1719,3 +1631,13 @@ body { font-size: 18px; }
 .marquee__logo-pod[data-artwork="orascom"] img { transform: none; }
 .partners-simple .partner-card[data-artwork="majesty"] .partner-card__logo-pod img,
 .marquee__logo-pod[data-artwork="majesty"] img { transform: scale(1.65); }
+.partners__more { text-align: center; margin: 28px 0 36px; } .partners-more { background: #f1f3f5; border: 0; color: #050505; min-width: 150px; } .partners-more[hidden] { display: none; }
+.lang-switch svg { display: block; width: 22px; height: 22px; } .lang-switch { color: #c8cdd2; }
+/* Show the complete Majesty Bay wordmark and remove the excess source margins. */
+.partners-simple .partner-card[data-artwork="majesty"] .partner-card__logo-pod img,
+.marquee__logo-pod[data-artwork="majesty"] img {
+  transform: none;
+  object-fit: contain;
+  object-position: center;
+  object-view-box: inset(39% 13% 40% 13%);
+}

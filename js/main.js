@@ -211,22 +211,42 @@
   // ---------- Partners Category Filter & Modal ----------
   var pTabs = document.querySelectorAll(".partner-tab");
   var pCards = document.querySelectorAll(".partner-card");
+  var pMore = document.querySelector(".partners-more");
+  var pFilter = "all";
+  var pExpanded = false;
+  function renderPartners() {
+    var count = 0;
+    pCards.forEach(function (card) {
+      var matches = pFilter === "all" || card.getAttribute("data-category") === pFilter;
+      var visible = matches && (pExpanded || count < 6);
+      if (matches) count++;
+      card.classList.toggle("is-hidden", !visible);
+    });
+    if (pMore) {
+      pMore.hidden = count <= 6;
+      pMore.textContent = pMore.getAttribute(pExpanded ? "data-less" : "data-more");
+      pMore.setAttribute("aria-expanded", String(pExpanded));
+    }
+  }
+  if (pMore) pMore.addEventListener("click", function () {
+    pExpanded = !pExpanded;
+    renderPartners();
+    if (!pExpanded) document.getElementById("partners").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   if (pTabs.length && pCards.length) {
     pTabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
-        var filter = tab.getAttribute("data-filter");
+        pFilter = tab.getAttribute("data-filter");
+        pExpanded = false;
         pTabs.forEach(function (t) {
           var active = t === tab;
           t.classList.toggle("is-active", active);
           t.setAttribute("aria-selected", active ? "true" : "false");
         });
-        pCards.forEach(function (card) {
-          var cat = card.getAttribute("data-category");
-          var match = filter === "all" || cat === filter;
-          card.classList.toggle("is-hidden", !match);
-        });
+        renderPartners();
       });
     });
+    renderPartners();
   }
 
   var pModal = document.getElementById("partnerModal");
