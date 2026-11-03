@@ -198,7 +198,7 @@
         t.waService + data.get("service"),
         t.waDetails + (String(data.get("message")).trim() || t.none)
       ].join("\n");
-      window.open("https://wa.me/201022097233?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+      window.open("https://wa.me/201011002233?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
       note.textContent = t.formOk;
       note.className = "form__note ok";
     });
